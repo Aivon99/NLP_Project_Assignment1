@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.15)  8 DEC 2025 20:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.15)  8 DEC 2025 21:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -279,90 +279,54 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count281
 \@lastruleclass=\count282
 \@thisrulewidth=\dimen173
-) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.st
-y
-Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip54
-\multirow@cntb=\count283
-\multirow@dima=\skip55
-\bigstrutjot=\dimen174
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
-cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 107.
-)
-\Gin@req@height=\dimen175
-\Gin@req@width=\dimen176
-)
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 2
-1.
-
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
+9.
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
 ftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count284
+\l__color_backend_stack_int=\count283
 \l__pdf_internal_box=\box51
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
 kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count285
-\scratchdimen=\dimen177
+\scratchcounter=\count284
+\scratchdimen=\dimen174
 \scratchbox=\box52
-\nofMPsegments=\count286
-\nofMParguments=\count287
+\nofMPsegments=\count285
+\nofMParguments=\count286
 \everyMPshowfont=\toks19
-\MPscratchCnt=\count288
-\MPscratchDim=\dimen178
-\MPnumerator=\count289
-\makeMPintoPDFobject=\count290
+\MPscratchCnt=\count287
+\MPscratchDim=\dimen175
+\MPnumerator=\count288
+\makeMPintoPDFobject=\count289
 \everyMPtoPDFconversion=\toks20
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.
-cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -400,65 +364,36 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 21.
+Package hyperref Info: Link coloring ON on input line 19.
 (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 22.
+(Font)              <12> on input line 20.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 22.
+(Font)              <8> on input line 20.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 22.
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 22
+(Font)              <6> on input line 20.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 20
 .
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-2.
+0.
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 1845) in paragraph at lines 25--29
-\OT1/ptm/m/n/10 au-to-mated sex-ism de-tec-tion in so-cial me-
+Underfull \hbox (badness 1783) in paragraph at lines 47--49
+\OT1/ptm/m/n/10.95 men-tions, hash-tags, and emo-jis, fol-lowed by
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 25--29
-\OT1/ptm/m/n/10 dia posts, framed as a multi-class clas-si-
- []
-
-
-Underfull \hbox (badness 1117) in paragraph at lines 25--29
-\OT1/ptm/m/n/10 fi-ca-tion task dis-tin-guish-ing non-sexist con-
- []
-
-
-Underfull \hbox (badness 1281) in paragraph at lines 25--29
-\OT1/ptm/m/n/10 based on BiL-STM with static GloVe em-
- []
-
-
-Underfull \hbox (badness 1178) in paragraph at lines 37--40
-\OT1/ptm/m/n/10.95 by com-par-ing tra-di-tional re-cur-rent neu-ral net-
- []
-
-
-Underfull \hbox (badness 1527) in paragraph at lines 45--48
-\OT1/ptm/m/n/10.95 The dataset orig-i-nates from the EX-IST 2023
- []
-
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
-1.
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-Underfull \hbox (badness 2617) in paragraph at lines 53--54
-[]\OT1/ptm/b/n/10.95 JUDGEMENTAL\OT1/ptm/m/n/10.95 : State-ments ex-press-ing
+Underfull \hbox (badness 1253) in paragraph at lines 67--70
+\OT1/ptm/m/n/10.95 A clas-si-fi-ca-tion head is added on top of the
  []
 
 [1{C:/Users/Utente/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/U
@@ -467,122 +402,32 @@ tente/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 2735) in paragraph at lines 70--71
-[]\OT1/ptm/b/n/10.95 Lemmatization\OT1/ptm/m/n/10.95 : Us-ing spaCy's En-glish
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--108
-\OT1/ptm/m/n/10.95 Our pri-mary model lever-ages the Twitter-
- []
-
-
-Underfull \hbox (badness 7030) in paragraph at lines 106--108
-\OT1/ptm/m/n/10.95 RoBERTa-base-hate check-point, a RoBERTa
- []
-
-
-Underfull \hbox (badness 1577) in paragraph at lines 106--108
-\OT1/ptm/m/n/10.95 model pre-trained on Twit-ter data and fur-ther
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-[]\OT1/ptm/b/n/10.95 Contextualized rep-re-sen-ta-tions\OT1/ptm/m/n/10.95 : Sel
-f-
- []
-
-[2]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 147.
+(Font)              <10.95> on input line 84.
 
-Overfull \hbox (98.71323pt too wide) in paragraph at lines 147--156
+Overfull \hbox (98.71323pt too wide) in paragraph at lines 84--93
  [][] 
  []
 
 
-Overfull \hbox (49.85983pt too wide) in paragraph at lines 172--185
+Underfull \hbox (badness 1163) in paragraph at lines 97--99
+\OT1/ptm/m/n/10.95 for-mance, with macro-F1 around 0.42, show-
+ []
+
+
+Overfull \hbox (49.85983pt too wide) in paragraph at lines 107--120
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
-[]\OT1/ptm/b/n/10.95 JUDGEMENTAL\OT1/ptm/m/n/10.95 : Poor-est per-for-mance
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+[]\OT1/ptm/m/n/10.95 The BiL-STM base-line's 11.8% out-of-
  []
 
-
-Underfull \hbox (badness 1072) in paragraph at lines 194--195
-\OT1/ptm/m/n/10.95 (F1=0.20) re-sults from ex-treme un-der-rep-
- []
-
-
-Underfull \hbox (badness 2735) in paragraph at lines 194--195
-\OT1/ptm/m/n/10.95 re-sen-ta-tion (14 test sam-ples) and sub-tle
- []
-
-
-Underfull \hbox (badness 1057) in paragraph at lines 194--195
-\OT1/ptm/m/n/10.95 lin-guis-tic char-ac-ter-is-tics that over-lap with
- []
-
-
-Underfull \hbox (badness 6691) in paragraph at lines 195--196
-\OT1/ptm/m/n/10.95 dif-fi-culty dis-tin-guish-ing re-ports of sex-
- []
-
-
-Underfull \hbox (badness 4805) in paragraph at lines 195--196
-\OT1/ptm/m/n/10.95 ism from en-dorse-ments, a task re-quir-
- []
-
-
-Underfull \hbox (badness 2818) in paragraph at lines 195--196
-\OT1/ptm/m/n/10.95 ing discourse-level un-der-stand-ing be-yond
- []
-
-[3]
-Underfull \hbox (badness 4454) in paragraph at lines 222--223
- []\OT1/ptm/b/n/10.95 Reported speech dis-am-bigua-tion[] \OT1/ptm/m/n/10.95 Se
-n-tences
- []
-
-
-Underfull \hbox (badness 2452) in paragraph at lines 222--223
-\OT1/ptm/m/n/10.95 de-scrib-ing sex-ist sit-u-a-tions with-out en-dors-ing
- []
-
-
-Underfull \hbox (badness 1917) in paragraph at lines 237--239
- []\OT1/ptm/b/n/10.95 Context-dependent tox-i-c-ity[] \OT1/ptm/m/n/10.95 Some t
-erms are
- []
-
-[4]
-Underfull \hbox (badness 7558) in paragraph at lines 266--268
-[]\OT1/ptm/m/n/10.95 The con-sis-tent per-for-mance ad-van-tage of
- []
-
-
-Underfull \hbox (badness 2368) in paragraph at lines 266--268
-\OT1/ptm/m/n/10.95 con-tex-tual em-bed-dings over static rep-re-sen-ta-
- []
-
-
-Underfull \hbox (badness 2103) in paragraph at lines 266--268
-\OT1/ptm/m/n/10.95 iden-ti-fied through our anal-y-sis, sug-gests that
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--268
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--268
-
- []
-
-[5
+[2] [3
 
 ] (main.aux)
  ***********
@@ -590,25 +435,24 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 82E7589B13435910886CD6E670A0F263;3005.
+(rerunfilecheck)             Checksum: F7C89D51EB405E4C74CD4E1C51F8761A;1227.
  ) 
 Here is how much of TeX's memory you used:
- 11400 strings out of 474486
- 184084 string characters out of 5743283
- 1944542 words of memory out of 5000000
- 33509 multiletter control sequences out of 15000+600000
- 574798 words of font info for 70 fonts, out of 8000000 for 9000
+ 10909 strings out of 474486
+ 175890 string characters out of 5743283
+ 1943542 words of memory out of 5000000
+ 33066 multiletter control sequences out of 15000+600000
+ 572800 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,10n,93p,398b,529s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,93p,298b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmsy10.pfb><C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/urw/cour
 ier/ucrr8a.pfb><C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/urw/t
 imes/utmb8a.pfb><C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
-times/utmr8a.pfb><C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/urw
-/times/utmri8a.pfb>
-Output written on main.pdf (5 pages, 97944 bytes).
+times/utmr8a.pfb>
+Output written on main.pdf (3 pages, 70167 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 88 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

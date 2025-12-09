@@ -4,8 +4,6 @@
 \usepackage{times}
 \usepackage{latexsym}
 \usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{graphicx}
 
 \title{Sexism Detection in Social Media\\
 	\large A Comparative Study of BiLSTM and Transformer-based Models}
@@ -22,125 +20,64 @@
 	\maketitle
 	
 	\begin{abstract}
-		This report presents a comparative study on automated sexism detection in social media posts, framed as a multi-class classification task distinguishing non-sexist content from three types of sexism: DIRECT, JUDGEMENTAL, and REPORTED.
-		We compare recurrent neural network architectures based on BiLSTM with static GloVe embeddings against a transformer-based model fine-tuned from a pretrained RoBERTa checkpoint.
-		Our experiments demonstrate that transformer models substantially outperform recurrent baselines, achieving validation macro-F1 scores of 0.549 compared to 0.424 for the BiLSTM baseline.
-		Error analysis reveals that performance remains uneven across classes due to severe class imbalance and the inherent difficulty of detecting subtle linguistic phenomena such as reported speech and implicit stereotypes.
+		This report presents a text classification study on the detection of sexist content in social media posts.
+		We compare a recurrent neural baseline based on a BiLSTM architecture with a transformer-based model fine-tuned from a pretrained RoBERTa checkpoint.
+		The task is framed as a multi-class classification problem distinguishing non-sexist content from three types of sexism: DIRECT, JUDGEMENTAL, and REPORTED.
+		We evaluate the models using standard classification metrics and provide an error analysis highlighting the main challenges of the task, particularly class imbalance and subtle linguistic phenomena.
 	\end{abstract}
 	
 	\section{Introduction}
 	
-	Online social platforms serve as major channels for public discourse but simultaneously harbor abusive and discriminatory language.
-	Automatically identifying sexist content represents an important sociotechnical challenge with implications for content moderation and user safety.
-	Unlike coarse binary hate-speech detection, fine-grained sexism classification introduces additional complexity through subtle distinctions between explicit attacks, judgmental statements, and reported instances of sexism.
+	Online social platforms are a major channel for public discourse but also a frequent source of abusive and discriminatory language.
+	Automatically identifying sexist content is therefore an important problem, both from a societal and a technical perspective.
+	Compared to coarse binary hate-speech detection, fine-grained sexism classification introduces additional difficulty due to subtle distinctions between explicit, judgemental, and reported forms of sexism.
 	
-	In this work, we address sexism detection as a supervised multi-class classification problem on the EXIST 2023 Task 2 dataset.
-	We investigate how architectural choices affect performance by comparing traditional recurrent neural networks with static word embeddings against modern transformer-based models leveraging contextualized representations.
-	Our analysis provides insights into the specific challenges posed by class imbalance, lexical variation in social media text, and discourse-level understanding requirements.
+	In this project, we address sexism detection as a supervised multi-class classification task.
+	We investigate how different modeling choices affect performance, comparing a traditional neural architecture based on static word embeddings with a modern transformer-based model leveraging contextualized representations.
 	
 	\section{Dataset and Task Definition}
 	
-	\subsection{Data Source and Preprocessing}
+	The dataset consists of short social media posts from the EXIST 2023 shared task, annotated with four labels: non-sexist (`-'), DIRECT sexism, JUDGEMENTAL sexism, and REPORTED sexism.
+	The task is to assign exactly one label to each post.
 	
-	The dataset originates from the EXIST 2023 shared task and consists of multilingual social media posts with annotations for sexism types.
-	We focus exclusively on English-language content, applying majority vote aggregation across multiple annotators and filtering samples without clear label consensus.
-	This process yields 2,873 training examples, 150 validation examples, and 280 test examples.
+	We apply majority vote aggregation across annotators and filter English-only content, yielding 2,873 training samples, 150 validation samples, and 280 test samples.
+	A key characteristic of the dataset is strong class imbalance: the non-sexist class represents 70.1\% of samples (2,014), while DIRECT accounts for 18.7\% (537), REPORTED for 6.4\% (184), and JUDGEMENTAL for only 4.8\% (138).
+	This imbalance has a direct impact on both training dynamics and evaluation, particularly for macro-averaged metrics.
 	
-	Each post receives exactly one label from four categories:
-	\begin{itemize}
-		\item \textbf{Non-sexist} (`-'): Content without sexist elements
-		\item \textbf{DIRECT}: Explicit sexist attacks or insults
-		\item \textbf{JUDGEMENTAL}: Statements expressing sexist judgments or stereotypes
-		\item \textbf{REPORTED}: Posts reporting or describing sexist situations without endorsing them
-	\end{itemize}
-	
-	\subsection{Class Distribution and Imbalance}
-	
-	A critical characteristic of this dataset is severe class imbalance.
-	The training set contains 2,014 non-sexist samples (70.1\%), 537 DIRECT samples (18.7\%), 184 REPORTED samples (6.4\%), and 138 JUDGEMENTAL samples (4.8\%).
-	This imbalance directly impacts both training dynamics and evaluation, particularly affecting macro-averaged metrics that weight all classes equally regardless of their frequency.
-	
-	\subsection{Text Preprocessing}
-	
-	We apply a multi-stage preprocessing pipeline to handle the noisy characteristics of social media text:
-	
-	\begin{enumerate}
-		\item \textbf{Noise removal}: Regular expressions remove URLs, user mentions (@-tags), hashtags, and emoji characters, as these elements often add stylistic variation without semantic contribution to sexism classification.
-		\item \textbf{Character normalization}: Special Unicode quotation marks and ellipses are standardized to ASCII equivalents.
-		\item \textbf{Lemmatization}: Using spaCy's English model, we convert words to their dictionary forms, reducing vocabulary size from raw tokens while preserving semantic content. For example, ``writing'' becomes ``write'' and ``women'' becomes ``woman''.
-	\end{enumerate}
-	
-	This preprocessing yields a training vocabulary of 9,073 unique tokens after lemmatization, with the most frequent terms including function words (``be'', ``the'', ``to'') and content words relevant to the domain (``woman'', ``like'').
+	Text preprocessing includes removal of URLs, mentions, hashtags, and emojis, followed by spaCy lemmatization.
+	This results in a training vocabulary of 9,073 unique tokens.
 	
 	\section{Models}
 	
 	\subsection{BiLSTM Baseline}
 	
-	Our baseline architecture follows a standard recurrent neural network design with static word embeddings.
-	The model consists of:
+	As a baseline, we use a bidirectional LSTM model operating on pretrained GloVe Twitter embeddings (100-dimensional, 27B token corpus).
+	The architecture consists of an embedding layer, a BiLSTM encoder with 128 hidden units per direction, dropout (0.2), and a linear classification head.
+	Out-of-vocabulary tokens (11.8\% of training vocabulary) receive random Gaussian initialization.
+	The model contains 1.14M trainable parameters and is trained with Adam optimizer, sparse categorical cross-entropy loss, and early stopping (patience=3) on validation loss.
 	
-	\begin{itemize}
-		\item \textbf{Embedding layer}: 100-dimensional GloVe Twitter embeddings (27B token corpus) initialize the vocabulary. Out-of-vocabulary tokens (11.8\% of training vocabulary) receive random Gaussian initialization.
-		\item \textbf{BiLSTM encoder}: A bidirectional LSTM with 128 hidden units per direction processes sequences, producing 256-dimensional contextualized representations.
-		\item \textbf{Dropout regularization}: 20\% dropout rate prevents overfitting.
-		\item \textbf{Classification head}: A fully connected layer with softmax activation produces probability distributions over four classes.
-	\end{itemize}
-	
-	The model contains 1.14M trainable parameters and operates on fixed-length sequences of 64 tokens with padding and truncation as needed.
-	We train with Adam optimizer and sparse categorical cross-entropy loss, applying early stopping based on validation loss with patience of 3 epochs.
+	While simple, this model provides a useful reference point and highlights the limitations of static word representations in handling noisy and context-dependent social media language.
 	
 	\subsection{Stacked BiLSTM}
 	
-	To investigate whether additional recurrent layers improve performance, we implement a stacked variant with two BiLSTM layers:
-	
-	\begin{itemize}
-		\item \textbf{First BiLSTM}: 128 hidden units per direction with sequence output
-		\item \textbf{Second BiLSTM}: 64 hidden units per direction, final state only
-		\item \textbf{Dropout}: 30\% rate after the final BiLSTM layer
-	\end{itemize}
-	
-	This architecture enables the model to learn hierarchical representations, potentially capturing more complex linguistic patterns at the cost of increased training time.
+	We also test a stacked variant with two BiLSTM layers (128 and 64 hidden units per direction) and increased dropout (0.3) to investigate whether additional depth improves performance.
 	
 	\subsection{Transformer-based Model}
 	
-	Our primary model leverages the Twitter-RoBERTa-base-hate checkpoint, a RoBERTa model pretrained on Twitter data and further adapted for hate speech detection.
-	This foundation provides several advantages:
-	
-	\begin{itemize}
-		\item \textbf{Subword tokenization}: Byte-pair encoding handles out-of-vocabulary terms, morphological variants, and social media-specific spellings more robustly than word-level vocabularies.
-		\item \textbf{Contextualized representations}: Self-attention mechanisms in the 12-layer transformer encoder produce context-dependent embeddings, unlike static GloVe vectors.
-		\item \textbf{Task-relevant pretraining}: The hate speech adaptation provides initialization closer to our target domain than general-purpose language models.
-	\end{itemize}
-	
-	We add a linear classification head on top of the [CLS] token representation and fine-tune the entire model end-to-end for 3 epochs with learning rate 2e-5, batch size 16, and weight decay 0.01.
-	Model selection uses macro-F1 on the validation set.
+	The main model is based on Twitter-RoBERTa-base-hate, a RoBERTa model pretrained on Twitter data and adapted for hate speech detection.
+	A classification head is added on top of the [CLS] token representation, and the entire model is fine-tuned end-to-end for 3 epochs with learning rate 2e-5, batch size 16, and weight decay 0.01.
+	Thanks to subword tokenization and contextualized representations, this model is better suited to handle lexical variation, short texts, and implicit meanings.
 	
 	\section{Experimental Setup}
 	
-	\subsection{Training Configuration}
-	
-	To ensure robust evaluation, we train all models across three random seeds (42, 1337, 2025) and report mean and standard deviation of performance metrics.
-	This multi-seed approach accounts for initialization sensitivity, particularly important given the small dataset size and class imbalance.
-	
-	All models use:
-	\begin{itemize}
-		\item Maximum sequence length: 64 tokens
-		\item Early stopping on validation loss (patience = 3 epochs)
-		\item Validation-based model selection
-	\end{itemize}
-	
-	\subsection{Evaluation Metrics}
-	
-	We report precision, recall, and F1-score with particular emphasis on \textbf{macro-averaged F1}, which computes metrics independently for each class and averages them.
-	This approach prevents the non-sexist majority class from dominating performance assessment and better reflects the model's ability to handle all sexism types equally.
-	
-	For the best-performing model configuration, we conduct detailed error analysis on the held-out test set, including per-class metrics, confusion matrices, and qualitative examination of misclassified examples.
+	Models are trained using cross-entropy loss and evaluated on held-out validation and test sets.
+	We report precision, recall, and F1-score, with particular emphasis on macro-F1 to account for class imbalance.
+	All models are trained across three random seeds (42, 1337, 2025), and we report mean and standard deviation.
+	The best-performing model is selected based on validation macro-F1.
 	
 	\section{Results}
 	
-	\subsection{Overall Performance Comparison}
-	
-	Table~\ref{tab:main_results} summarizes validation performance across all model architectures.
+	Table~\ref{tab:results} shows validation performance across all models.
 	
 	\begin{table}[h]
 		\centering
@@ -153,19 +90,17 @@
 			Twitter-RoBERTa & \textbf{0.688 $\pm$ 0.067} & \textbf{0.537 $\pm$ 0.013} & \textbf{0.549 $\pm$ 0.004} \\
 			\bottomrule
 		\end{tabular}
-		\caption{Macro-averaged validation metrics across three random seeds. Bold indicates best performance.}
-		\label{tab:main_results}
+		\caption{Macro-averaged validation metrics across three seeds. Bold indicates best performance.}
+		\label{tab:results}
 	\end{table}
 	
-	The transformer-based model substantially outperforms both recurrent architectures, achieving 29.5\% relative improvement in macro-F1 over the BiLSTM baseline (0.549 vs 0.424).
-	This performance gap demonstrates the value of contextualized representations and domain-adapted pretraining.
+	The BiLSTM baseline achieves limited performance, with macro-F1 around 0.42, showing strong bias toward the majority class.
+	The stacked BiLSTM shows only marginal improvement (0.440 F1) with higher variance, suggesting that additional recurrent depth provides limited benefit without sufficient training data.
 	
-	Surprisingly, the stacked BiLSTM shows only marginal improvement over the baseline (0.440 vs 0.424 F1), suggesting that additional recurrent depth provides limited benefit for this task.
-	The higher standard deviation in stacked BiLSTM precision (0.085 vs 0.016) indicates greater training instability, possibly due to increased model complexity without corresponding capacity to learn useful hierarchical features from the limited training data.
+	The RoBERTa model consistently outperforms both baselines, reaching macro-F1 of 0.549 on validation, a 29.5\% relative improvement over the BiLSTM baseline.
+	Nevertheless, performance remains uneven across labels, with especially low recall for minority classes.
 	
-	\subsection{Per-Class Analysis}
-	
-	Table~\ref{tab:class_results} presents per-class test set performance for the best RoBERTa model (seed 1337, highest validation F1).
+	Table~\ref{tab:perclass} presents per-class test results for the best RoBERTa model (seed 1337).
 	
 	\begin{table}[h]
 		\centering
@@ -173,98 +108,45 @@
 			\toprule
 			\textbf{Class} & \textbf{Support} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
 			\midrule
-			Non-sexist (-)    & 196 & 0.78 & 0.91 & 0.84 \\
-			DIRECT            & 52  & 0.67 & 0.60 & 0.63 \\
-			JUDGEMENTAL       & 14  & 0.33 & 0.14 & 0.20 \\
-			REPORTED          & 18  & 0.64 & 0.39 & 0.48 \\
+			Non-sexist (-) & 196 & 0.78 & 0.91 & 0.84 \\
+			DIRECT & 52 & 0.67 & 0.60 & 0.63 \\
+			JUDGEMENTAL & 14 & 0.33 & 0.14 & 0.20 \\
+			REPORTED & 18 & 0.64 & 0.39 & 0.48 \\
 			\midrule
-			\textbf{Macro avg} & 280 & \textbf{0.61} & \textbf{0.49} & \textbf{0.49} \\
-			\textbf{Weighted avg} & 280 & \textbf{0.74} & \textbf{0.77} & \textbf{0.74} \\
+			Macro avg & 280 & 0.61 & 0.49 & 0.49 \\
+			Weighted avg & 280 & 0.74 & 0.77 & 0.74 \\
 			\bottomrule
 		\end{tabular}
-		\caption{Per-class test set metrics for Twitter-RoBERTa (seed 1337). Support indicates number of test examples per class.}
-		\label{tab:class_results}
+		\caption{Per-class test set performance for Twitter-RoBERTa (seed 1337).}
+		\label{tab:perclass}
 	\end{table}
 	
-	Performance varies dramatically across classes, reflecting both their representation in training data and their inherent difficulty:
-	
-	\begin{itemize}
-		\item \textbf{Non-sexist}: Strong performance (F1=0.84) benefits from majority class status and relatively clear negative evidence.
-		\item \textbf{DIRECT}: Moderate performance (F1=0.63) suggests the model effectively detects explicit insults when present, though with notable false negatives.
-		\item \textbf{JUDGEMENTAL}: Poorest performance (F1=0.20) results from extreme underrepresentation (14 test samples) and subtle linguistic characteristics that overlap with both non-sexist opinions and other sexism types.
-		\item \textbf{REPORTED}: Low recall (0.39) indicates difficulty distinguishing reports of sexism from endorsements, a task requiring discourse-level understanding beyond surface-level lexical cues.
-	\end{itemize}
-	
-	The substantial gap between weighted average F1 (0.74) and macro average F1 (0.49) quantifies the impact of class imbalance, with the majority class driving overall accuracy while minority classes struggle.
+	The gap between weighted F1 (0.74) and macro F1 (0.49) quantifies the impact of class imbalance.
+	Non-sexist content achieves strong performance (F1=0.84), while JUDGEMENTAL performs poorly (F1=0.20) due to extreme underrepresentation and subtle linguistic characteristics.
 	
 	\section{Error Analysis}
 	
-	\subsection{Confusion Patterns}
+	The error patterns are heavily influenced by class imbalance, with the non-sexist class acting as a strong attractor.
+	Confusion matrix analysis reveals that 40\% of DIRECT samples, 61\% of REPORTED samples, and 86\% of JUDGEMENTAL samples are misclassified as non-sexist.
 	
-	Examination of the confusion matrix for the best RoBERTa model reveals systematic error patterns driven by class imbalance and linguistic ambiguity.
+	DIRECT sexism is generally detected when explicit insults are present, while JUDGEMENTAL and REPORTED sexism are frequently confused with each other or misclassified as non-sexist.
+	Reported speech requires discourse-level understanding to distinguish reporting from endorsing sexism, which remains challenging even for transformer-based models.
+	For example, posts like ``the man sat next to me has just told his friend that he doesn't employ women because they're not committed enough'' require understanding that the speaker reports rather than endorses the sexist view.
 	
-	The non-sexist class acts as a strong attractor, accounting for the majority of false negatives across all sexism types.
-	This bias manifests as:
-	\begin{itemize}
-		\item 21/52 DIRECT samples misclassified as non-sexist (40\%)
-		\item 11/18 REPORTED samples misclassified as non-sexist (61\%)
-		\item 12/14 JUDGEMENTAL samples misclassified as non-sexist (86\%)
-	\end{itemize}
-	
-	Among sexism categories, JUDGEMENTAL and REPORTED show frequent mutual confusion, likely because both involve implicit or indirect expressions rather than explicit attacks.
-	The model appears to learn a coarse distinction between overt sexism (DIRECT) and everything else, with limited capacity to disambiguate subtler categories.
-	
-	\subsection{Qualitative Error Patterns}
-	
-	Manual inspection of misclassified test examples reveals several recurring failure modes:
-	
-	\paragraph{Reported speech disambiguation}
-	Sentences describing sexist situations without endorsing them pose consistent challenges:
-	\begin{quote}
-		\textit{``Writing a uni essay in my local pub with a coffee and the man sat next to me has just told his friend that he doesn't employ women because they're not committed enough''}
-	\end{quote}
-	True label: REPORTED. This requires understanding that the speaker reports rather than endorses the sexist view, a discourse-level inference beyond local lexical patterns.
-	
-	\paragraph{Implicit stereotypes and judgments}
+	Additional errors arise from sarcasm, implicit stereotypes, and noisy language typical of social media.
 	JUDGEMENTAL samples often express sexist attitudes through implications rather than explicit statements, making them difficult to separate from opinionated but non-sexist content.
-	The model struggles when sexist framing is subtle or requires world knowledge about gender stereotypes.
 	
-	\paragraph{Sarcasm and non-literal language}
-	Social media's informal register includes sarcasm, irony, and exaggeration that complicate literal interpretation.
-	Posts using sexist language ironically or to criticize sexism may be misclassified based on surface-level lexical cues.
+	The BiLSTM baseline's 11.8\% out-of-vocabulary rate further limits performance, while the transformer's subword tokenization handles novel terms through character-level composition.
 	
-	\paragraph{Context-dependent toxicity}
-	Some terms are sexist only in specific contexts.
-	The model's context window and attention mechanisms provide some disambiguation, but limited training data for minority classes restricts learning of context-specific patterns.
-	
-	These error patterns indicate that remaining improvements require not just better models but better handling of class imbalance (e.g., through oversampling, class weighting, or focal loss) and potentially auxiliary annotations for discourse structure or implicit meaning.
-	
-	\subsection{Vocabulary Coverage}
-	
-	The GloVe-based BiLSTM baseline faced 11.8\% out-of-vocabulary rate on training data, requiring random initialization for over 1,000 tokens.
-	Social media language includes neologisms, misspellings, and domain-specific terms absent from the GloVe Twitter corpus.
-	The transformer's subword tokenization eliminates this problem entirely, handling novel terms through character-level composition.
-	This architectural advantage likely contributes significantly to the performance gap between models.
+	Overall, errors mostly stem from subtle linguistic phenomena and severe class imbalance rather than from a failure to recognize overtly abusive language.
 	
 	\section{Conclusion}
 	
-	This study demonstrates that transformer-based models substantially outperform recurrent neural network baselines for fine-grained sexism detection, achieving 29.5\% relative improvement in macro-F1 (0.549 vs 0.424).
+	This project shows that transformer-based models substantially outperform recurrent baselines for fine-grained sexism detection, achieving 29.5\% relative improvement in macro-F1.
 	The benefits stem from contextualized representations, subword tokenization, and domain-adapted pretraining.
 	
-	However, the task remains challenging with macro-F1 below 0.55, primarily due to severe class imbalance and the inherently subtle nature of JUDGEMENTAL and REPORTED categories.
-	Error analysis reveals that minority classes suffer from insufficient training data, while reported speech and implicit stereotypes require discourse-level understanding that current models handle poorly.
-	
-	Future work should prioritize:
-	\begin{itemize}
-		\item \textbf{Class balancing strategies}: Oversampling minority classes, class-weighted loss functions, or focal loss to address the 70:18:6:5 class distribution.
-		\item \textbf{Data augmentation}: Paraphrasing or back-translation to artificially increase minority class representation.
-		\item \textbf{Hierarchical classification}: Decomposing the task into binary sexism detection followed by fine-grained type classification to better utilize the non-sexist majority.
-		\item \textbf{Auxiliary tasks}: Multi-task learning with related objectives (e.g., stance detection, sentiment analysis) to improve representation learning.
-		\item \textbf{Larger pretrained models}: Testing larger transformers (RoBERTa-large, DeBERTa) or models specifically adapted for social media toxicity detection.
-	\end{itemize}
-	
-	The consistent performance advantage of contextual embeddings over static representations, combined with the specific error patterns identified through our analysis, suggests that purely architectural improvements offer diminishing returns without addressing the fundamental challenge of learning from severely imbalanced data with subtle linguistic distinctions.\\
-	\\
-	
+	However, the task remains challenging due to dataset imbalance and the inherently subtle nature of some sexist categories.
+	Future improvements are likely to come from better class balancing strategies (oversampling, class-weighted loss, focal loss) and targeted modeling of implicit and reported sexism, rather than purely increasing model complexity.
+	Hierarchical classification or multi-task learning with related objectives may also help improve minority class performance.
 	
 \end{document}\\
