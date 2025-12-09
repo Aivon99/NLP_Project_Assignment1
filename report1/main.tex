@@ -83,16 +83,46 @@
 		\centering
 		\begin{tabular}{lccc}
 			\toprule
-			\textbf{Model} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+			\textbf{Model} & \textbf{Precision}  \\
 			\midrule
-			BiLSTM Baseline & 0.496 $\pm$ 0.016 & 0.411 $\pm$ 0.028 & 0.424 $\pm$ 0.027 \\
-			Stacked BiLSTM & 0.495 $\pm$ 0.085 & 0.447 $\pm$ 0.056 & 0.440 $\pm$ 0.025 \\
-			Twitter-RoBERTa & \textbf{0.688 $\pm$ 0.067} & \textbf{0.537 $\pm$ 0.013} & \textbf{0.549 $\pm$ 0.004} \\
+			BiLSTM Baseline & 0.496 $\pm$ 0.016   \\
+			Stacked BiLSTM & 0.495 $\pm$ 0.085  \\
+			Twitter-RoBERTa & \textbf{0.688 $\pm$ 0.067} \\
+			\bottomrule
+		\end{tabular}
+		\label{tab:results}
+	\end{table}
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{lccc}
+			\toprule
+			\textbf{Model} & \textbf{Recall}  \\
+			\midrule
+			BiLSTM Baseline & 0.411 $\pm$ 0.028  \\
+			Stacked BiLSTM & 0.447 $\pm$ 0.056 \\
+			Twitter-RoBERTa & \textbf{0.537 $\pm$ 0.013} \\
+			\bottomrule
+		\end{tabular}
+		
+		\label{tab:results}
+	\end{table}
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{lccc}
+			\toprule
+			\textbf{Model}  & \textbf{F1} \\
+			\midrule
+			BiLSTM Baseline & 0.424 $\pm$ 0.027 \\
+			Stacked BiLSTM  & 0.440 $\pm$ 0.025\\
+			Twitter-RoBERTa  & \textbf{0.549 $\pm$ 0.004} \\
 			\bottomrule
 		\end{tabular}
 		\caption{Macro-averaged validation metrics across three seeds. Bold indicates best performance.}
 		\label{tab:results}
 	\end{table}
+	
 	
 	The BiLSTM baseline achieves limited performance, with macro-F1 around 0.42, showing strong bias toward the majority class.
 	The stacked BiLSTM shows only marginal improvement (0.440 F1) with higher variance, suggesting that additional recurrent depth provides limited benefit without sufficient training data.

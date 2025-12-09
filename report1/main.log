@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.15)  8 DEC 2025 21:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.6.15)  9 DEC 2025 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -290,7 +290,11 @@ ftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count283
 \l__pdf_internal_box=\box51
-) (main.aux)
+) (main.aux
+
+LaTeX Warning: Label `tab:results' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
@@ -405,42 +409,38 @@ tente/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 84.
 
-Overfull \hbox (98.71323pt too wide) in paragraph at lines 84--93
- [][] 
- []
-
-
-Underfull \hbox (badness 1163) in paragraph at lines 97--99
+Underfull \hbox (badness 1163) in paragraph at lines 127--129
 \OT1/ptm/m/n/10.95 for-mance, with macro-F1 around 0.42, show-
  []
 
 
-Overfull \hbox (49.85983pt too wide) in paragraph at lines 107--120
+Overfull \hbox (49.85983pt too wide) in paragraph at lines 137--150
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
 []\OT1/ptm/m/n/10.95 The BiL-STM base-line's 11.8% out-of-
  []
 
-[2] [3
+[3
 
 ] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: F7C89D51EB405E4C74CD4E1C51F8761A;1227.
  ) 
 Here is how much of TeX's memory you used:
- 10909 strings out of 474486
- 175890 string characters out of 5743283
- 1943542 words of memory out of 5000000
+ 10911 strings out of 474486
+ 175920 string characters out of 5743283
+ 1944542 words of memory out of 5000000
  33066 multiletter control sequences out of 15000+600000
  572800 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -450,9 +450,9 @@ Here is how much of TeX's memory you used:
 ier/ucrr8a.pfb><C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/urw/t
 imes/utmb8a.pfb><C:/Users/Utente/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on main.pdf (3 pages, 70167 bytes).
+Output written on main.pdf (3 pages, 70531 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
+ 90 PDF objects out of 1000 (max. 8388607)
+ 18 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
